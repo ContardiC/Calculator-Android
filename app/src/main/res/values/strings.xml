@@ -6,4 +6,7 @@
     <string name="divide_button_text">/</string>
     <string name="multiplication_button_text">*</string>
     <string name="minus_button_text">-</string>
+    <string name="plus_button_text">+</string>
+    <string name="dot_button_text">.</string>
+    <string name="equals_button_text">=</string>
 </resources>
