@@ -13,7 +13,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/appBarLayout"
-        android:background="@android:color/white">
-
+        android:background="@color/bar_color">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/toolbar"
+            app:title="@string/toolbar_title"
+            app:titleTextColor="@color/white"
+            >
+        </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
+    <!-- To have the text resize automatically -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:autoSizeMaxTextSize="50sp"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
+
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="86dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
