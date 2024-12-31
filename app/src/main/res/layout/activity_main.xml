@@ -57,4 +57,65 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHistory" />
 
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:rowCount="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAC"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:text="@string/ac_button_text"
+            android:textSize="30sp"
+            android:textColor="@color/primary_color"
+            android:background="@color/background_color"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDel"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:text="@string/del_button_text"
+            android:textSize="30sp"
+            android:textColor="@color/primary_color"
+            android:background="@color/background_color"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDivide"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:text="@string/divide_button_text"
+            android:textSize="30sp"
+            android:textColor="@color/primary_color"
+            android:background="@color/background_color"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_columnWeight="1"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnMulti"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:text="@string/multiplication_button_text"
+            android:textSize="30sp"
+            android:textColor="@color/primary_color"
+            android:background="@color/background_color"
+            android:layout_row="0"
+            android:layout_column="3"
+            android:layout_columnWeight="1"
+            />
+
+    </GridLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

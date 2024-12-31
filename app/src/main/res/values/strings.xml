@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Calculator-Android</string>
     <string name="toolbar_title">Calculator</string>
+    <string name="ac_button_text">AC</string>
+    <string name="del_button_text">DEL</string>
+    <string name="divide_button_text">/</string>
+    <string name="multiplication_button_text">*</string>
 </resources>
