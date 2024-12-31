@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     String number = null;
     int countOpenPar = 0;
     int countClosePar = 0;
-
+    boolean operator = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +63,53 @@ public class MainActivity extends AppCompatActivity {
                 countClosePar++;
             }
         });
+        mainBinding.btnPlus.setOnClickListener(v -> {
+            if(!operator){
+                if(number == null){
+                    number = "0+";
+                }else{
+                    number += "+";
+                }
+                mainBinding.tvResult.setText(number);
+                operator = true;
+            }
+        });
+        mainBinding.btnMinus.setOnClickListener(v -> {
+            if(!operator){
+                if(number == null){
+                    number = "0+";
+                }else{
+                    number += "-";
+                }
+                mainBinding.tvResult.setText(number);
+                operator = true;
+            }
+        });
+        mainBinding.btnDivide.setOnClickListener(v -> {
+            if(!operator){
+                if(number == null){
+                    number = "0+";
+                }else{
+                    number += "/";
+                }
+                mainBinding.tvResult.setText(number);
+                operator = true;
+            }
+        });
+        mainBinding.btnMulti.setOnClickListener(v -> {
+            if(!operator){
+                if(number == null){
+                    number = "0+";
+                }else{
+                    number += "*";
+                }
+                mainBinding.tvResult.setText(number);
+                operator = true;
+            }
+        });
+
+
+
 
     }
 
@@ -73,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
             number += clickedNumber;
         }
         mainBinding.tvResult.setText(number);
+        operator = false;
     }
     public void onParClicked(String par){
         if(number == null){
