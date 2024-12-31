@@ -5,4 +5,5 @@
     <string name="del_button_text">DEL</string>
     <string name="divide_button_text">/</string>
     <string name="multiplication_button_text">*</string>
+    <string name="minus_button_text">-</string>
 </resources>
