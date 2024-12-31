@@ -13,6 +13,9 @@ import it.spacecoding.calculator_android.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding mainBinding;
     String number = null;
+    int countOpenPar = 0;
+    int countClosePar = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +53,16 @@ public class MainActivity extends AppCompatActivity {
         mainBinding.btn9.setOnClickListener(v -> {
             onNumberClicked("9");
         });
-
+        mainBinding.btnOpenPar.setOnClickListener(v -> {
+            onParClicked("(");
+            countOpenPar++;
+        });
+        mainBinding.btnClosePar.setOnClickListener(v -> {
+            if(countOpenPar > countClosePar) {
+                onParClicked(")");
+                countClosePar++;
+            }
+        });
 
     }
 
@@ -62,4 +74,13 @@ public class MainActivity extends AppCompatActivity {
         }
         mainBinding.tvResult.setText(number);
     }
+    public void onParClicked(String par){
+        if(number == null){
+            number = par;
+        }else{
+            number += par;
+        }
+        mainBinding.tvResult.setText(number);
+    }
+
 }
