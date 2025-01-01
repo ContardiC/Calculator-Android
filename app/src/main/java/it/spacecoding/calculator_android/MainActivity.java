@@ -146,7 +146,33 @@ public class MainActivity extends AppCompatActivity {
             onButtonACClicked();
         });
         mainBinding.btnDel.setOnClickListener(v->{
+            if(number == null || number.length()==1){
+                onButtonACClicked();
+            }else{
+                String lastChar = String.valueOf(number.charAt(number.length()-1));
+                switch (lastChar){
+                    case "+": case "-": case "/": case "*": case ".":
+                        operator = false;
+                        dotControl = false;
+                        break;
+                    case "(":
+                        countOpenPar--;
+                        break;
+                    case ")":
+                        countClosePar--;
+                        break;
+                }
+                number = number.substring(0,number.length()-1);
+                mainBinding.tvResult.setText(number);
 
+                lastChar = String.valueOf(number.charAt(number.length()-1));
+                switch (lastChar){
+                    case "+": case "-": case "/": case "*": case ".":
+                        operator = true;
+                        dotControl = true;
+                        break;
+                }
+            }
         });
 
 
