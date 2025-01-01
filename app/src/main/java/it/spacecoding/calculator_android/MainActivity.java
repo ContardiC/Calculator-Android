@@ -142,6 +142,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        mainBinding.btnAC.setOnClickListener(v->{
+            onButtonACClicked();
+        });
+        mainBinding.btnDel.setOnClickListener(v->{
+
+        });
+
 
 
 
@@ -165,6 +172,15 @@ public class MainActivity extends AppCompatActivity {
             number += par;
         }
         mainBinding.tvResult.setText(number);
+    }
+    public void onButtonACClicked(){
+        number = null;
+        mainBinding.tvResult.setText("0");
+        mainBinding.tvHistory.setText("");
+        countOpenPar = 0;
+        countClosePar = 0;
+        operator = false;
+        dotControl = false;
     }
 
 }
