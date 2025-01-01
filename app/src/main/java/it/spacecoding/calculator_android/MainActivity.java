@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     int countOpenPar = 0;
     int countClosePar = 0;
     boolean operator = false;
+    boolean dotControl = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mainBinding.btnPlus.setOnClickListener(v -> {
-            if(!operator){
+            if(!operator && !dotControl){
                 if(number == null){
                     number = "0+";
                 }else{
@@ -72,10 +73,11 @@ public class MainActivity extends AppCompatActivity {
                 }
                 mainBinding.tvResult.setText(number);
                 operator = true;
+                dotControl = true;
             }
         });
         mainBinding.btnMinus.setOnClickListener(v -> {
-            if(!operator){
+            if(!operator && !dotControl){
                 if(number == null){
                     number = "0+";
                 }else{
@@ -83,10 +85,11 @@ public class MainActivity extends AppCompatActivity {
                 }
                 mainBinding.tvResult.setText(number);
                 operator = true;
+                dotControl = true;
             }
         });
         mainBinding.btnDivide.setOnClickListener(v -> {
-            if(!operator){
+            if(!operator && !dotControl){
                 if(number == null){
                     number = "0+";
                 }else{
@@ -94,10 +97,11 @@ public class MainActivity extends AppCompatActivity {
                 }
                 mainBinding.tvResult.setText(number);
                 operator = true;
+                dotControl = true;
             }
         });
         mainBinding.btnMulti.setOnClickListener(v -> {
-            if(!operator){
+            if(!operator && !dotControl){
                 if(number == null){
                     number = "0+";
                 }else{
@@ -105,6 +109,37 @@ public class MainActivity extends AppCompatActivity {
                 }
                 mainBinding.tvResult.setText(number);
                 operator = true;
+            }
+        });
+        mainBinding.btnDot.setOnClickListener(v -> {
+            if(!dotControl && !operator){
+                if(number == null){
+                    number = "0.";
+                    mainBinding.tvResult.setText(number);
+                    dotControl = true;
+                    operator = true;
+                }else{
+                    String expressionAfterLast = "";
+                    String lastCharacter;
+                    // I insert a label that I need to end the loop
+                    dotLoop: for(int i = number.length() - 1; i >=0;i --){
+                        lastCharacter = String.valueOf(number.charAt(i));
+                        switch (lastCharacter){
+                            case "+": case "-": case "/": case "*":
+                                break dotLoop;
+                            default:
+                                expressionAfterLast = lastCharacter.concat(expressionAfterLast);
+                                break;
+                        }
+                    }
+                    if(!expressionAfterLast.contains(".")){
+                        number += ".";
+                        mainBinding.tvResult.setText(number);
+                        dotControl = true;
+                        operator = true;
+                    }
+                }
+
             }
         });
 
@@ -121,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
         }
         mainBinding.tvResult.setText(number);
         operator = false;
+        dotControl = false;
     }
     public void onParClicked(String par){
         if(number == null){
