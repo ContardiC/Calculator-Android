@@ -1,10 +1,12 @@
 package it.spacecoding.calculator_android;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -15,6 +17,7 @@ import it.spacecoding.calculator_android.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding mainBinding;
+    SharedPreferences sharedPreferences;
     String number = null;
     int countOpenPar = 0;
     int countClosePar = 0;
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(mainBinding.getRoot());
 
         mainBinding.tvResult.setText("0");
+        sharedPreferences = this.getSharedPreferences("it.spacecoding.calculator_android", MODE_PRIVATE);
+
         mainBinding.btn0.setOnClickListener(v -> {
             onNumberClicked("0");
         });
@@ -244,6 +249,55 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        boolean isDarkMode = sharedPreferences.getBoolean("darkMode", false);
+        if(isDarkMode){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }else{
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
+    }
+    @Override
+    protected void onPause(){
+        super.onPause();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String resultTextToSave = mainBinding.tvResult.getText().toString();
+        String historyTextToSave = mainBinding.tvHistory.getText().toString();
+        String resultToSave = result;
+        String numberToSave = number;
+        boolean operatorToSave = operator;
+        boolean dotControlToSave = dotControl;
+        boolean buttonEqualsControlToSave = buttonEqualsControl;
+        int countOpenParToSave = countOpenPar;
+        int countCloseParToSave = countClosePar;
+        editor.putString("resultText", resultTextToSave);
+        editor.putString("historyText", historyTextToSave);
+        editor.putString("result", resultToSave);
+        editor.putString("number", numberToSave);
+        editor.putBoolean("operator", operatorToSave);
+        editor.putBoolean("dotControl", dotControlToSave);
+        editor.putBoolean("buttonEqualsControl", buttonEqualsControlToSave);
+        editor.putInt("countOpenPar", countOpenParToSave);
+        editor.putInt("countClosePar", countCloseParToSave);
+        editor.apply();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mainBinding.tvResult.setText(sharedPreferences.getString("resultText", "0"));
+        mainBinding.tvHistory.setText(sharedPreferences.getString("historyText", ""));
+        result = sharedPreferences.getString("result", "");
+        number = sharedPreferences.getString("number", null);
+        operator = sharedPreferences.getBoolean("operator", false);
+        dotControl = sharedPreferences.getBoolean("dotControl", false);
+        buttonEqualsControl = sharedPreferences.getBoolean("buttonEqualsControl", false);
+        countOpenPar = sharedPreferences.getInt("countOpenPar", 0);
+        countClosePar = sharedPreferences.getInt("countClosePar", 0);
     }
 
     public void onNumberClicked(String clickedNumber){

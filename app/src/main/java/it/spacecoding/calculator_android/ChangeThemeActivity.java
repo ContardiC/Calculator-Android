@@ -42,7 +42,6 @@ public class ChangeThemeActivity extends AppCompatActivity {
     }
     protected void onResume() {
         super.onResume();
-
         sharedPreferences = this.getSharedPreferences("it.spacecoding.calculator_android", Context.MODE_PRIVATE);
         switchBinding.themeSwitch.setChecked(sharedPreferences.getBoolean("darkMode", false));
     }
