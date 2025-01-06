@@ -6,4 +6,6 @@
     <color name="background_color">#FF000000</color>
     <color name="text_color">#FFFFFFFF</color>
     <color name="primary_color">#5D1049</color>
+    <color name="switch_thumb">#5D1049</color>
+    <color name="switch_track">#720d5d</color>
 </resources>
