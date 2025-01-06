@@ -1,5 +1,6 @@
 package it.spacecoding.calculator_android;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -233,7 +234,16 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
+        mainBinding.toolbar.setOnMenuItemClickListener(item->{
+            if(item.getItemId() == R.id.settingsItem){
+                // intent
+                Intent intent = new Intent(MainActivity.this, ChangeThemeActivity.class);
+                startActivity(intent);
+                return true;
+            }else{
+                return false;
+            }
+        });
 
 
 

@@ -23,7 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="@string/toolbar_title"
-            app:titleTextColor="@color/white"></com.google.android.material.appbar.MaterialToolbar>
+            app:titleTextColor="@color/white"
+            app:menu="@menu/settings_menu" />
     </com.google.android.material.appbar.AppBarLayout>
     <!-- To have the text resize automatically -->
     <TextView
